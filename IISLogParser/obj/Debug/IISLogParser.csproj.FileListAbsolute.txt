@@ -1,9 +1,0 @@
-c:\users\truong.nguyen\documents\visual studio 2013\Projects\IISLogParser\IISLogParser\bin\Debug\IISLogParser.exe.config
-c:\users\truong.nguyen\documents\visual studio 2013\Projects\IISLogParser\IISLogParser\obj\Debug\IISLogParser.csprojResolveAssemblyReference.cache
-c:\users\truong.nguyen\documents\visual studio 2013\Projects\IISLogParser\IISLogParser\obj\Debug\IISLogParser.Form1.resources
-c:\users\truong.nguyen\documents\visual studio 2013\Projects\IISLogParser\IISLogParser\obj\Debug\IISLogParser.Properties.Resources.resources
-c:\users\truong.nguyen\documents\visual studio 2013\Projects\IISLogParser\IISLogParser\obj\Debug\IISLogParser.csproj.GenerateResource.Cache
-c:\users\truong.nguyen\documents\visual studio 2013\Projects\IISLogParser\IISLogParser\bin\Debug\IISLogParser.exe
-c:\users\truong.nguyen\documents\visual studio 2013\Projects\IISLogParser\IISLogParser\bin\Debug\IISLogParser.pdb
-c:\users\truong.nguyen\documents\visual studio 2013\Projects\IISLogParser\IISLogParser\obj\Debug\IISLogParser.exe
-c:\users\truong.nguyen\documents\visual studio 2013\Projects\IISLogParser\IISLogParser\obj\Debug\IISLogParser.pdb
