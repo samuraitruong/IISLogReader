@@ -15,6 +15,7 @@ namespace IISLogParser
     {
         public class IISLogEntry
         {
+            public int LineNumber { get; set; }
             public string DateTime { get; set; }
             public string Method { get; set; }
             public string Request { get; set; }
@@ -29,6 +30,8 @@ namespace IISLogParser
             public string SubStatus { get; set; }
 
             public string Status { get; set; }
+
+            public string Raw { get; set; }
         }
         public Form1()
         {
@@ -44,6 +47,7 @@ namespace IISLogParser
             {
                 this.logs = ParseIISLogFile(dl.FileName);
                 DisplayLog(this.logs, textBox1.Text, textBox2.Text, textBox3.Text);
+                this.Text = "IIS Loger Parser [" + dl.FileName + "]";
             }
         }
 
@@ -73,6 +77,7 @@ namespace IISLogParser
 
         private List<IISLogEntry> ParseIISLogFile(string filename)
         {
+            int linenumber = 0;
             var list = new List<IISLogEntry>();
             using (FileStream fs = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             using (BufferedStream bs = new BufferedStream(fs))
@@ -81,10 +86,11 @@ namespace IISLogParser
                 string line;
                 while ((line = sr.ReadLine()) != null)
                 {
+                    linenumber++;
                     if (line.StartsWith("#")) continue;
                     try
                     {
-                        IISLogEntry entry = ParseLog(line);
+                        IISLogEntry entry = ParseLog(line, linenumber);
                         list.Add(entry);
                     }
                     catch (Exception ex)
@@ -96,11 +102,12 @@ namespace IISLogParser
             return list;
         }
 
-        private IISLogEntry ParseLog(string line)
+        private IISLogEntry ParseLog(string line, int linenumber)
         {
             var arr = line.Split(new char[] { ' ' });
             return new IISLogEntry()
             {
+                LineNumber = linenumber,
                 DateTime = arr[0] + ' ' + arr[1],
                 RequestIP = arr[2],
                 Method = arr[3],
@@ -109,7 +116,8 @@ namespace IISLogParser
                 TimeTaken = arr[arr.Length-1] ,
                 Win32Status = arr[arr.Length - 2],
                 SubStatus = arr[arr.Length - 3],
-                Status = arr[arr.Length - 4]
+                Status = arr[arr.Length - 4]   ,
+                Raw = line
             };
         }
 
@@ -122,7 +130,7 @@ namespace IISLogParser
         {
             foreach (DataGridViewRow Myrow in dataGridView1.Rows)
             {            //Here 2 cell is target value and 1 cell is Volume
-                if (Myrow.Cells[8].Value.ToString() !="200")// Or your condition 
+                if (Myrow.Cells[9].Value.ToString() !="200")// Or your condition 
                 {
                     Myrow.DefaultCellStyle.BackColor = Color.Red;
                     Myrow.DefaultCellStyle.ForeColor = Color.White;
